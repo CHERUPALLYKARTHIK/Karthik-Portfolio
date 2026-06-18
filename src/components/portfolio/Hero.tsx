@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Reveal } from "./Reveal";
-
-const ROLES = ["AI / ML Developer", "Full Stack Developer", "UI Designer", "Frontend Developer", "Edge AI Enthusiast"];
-
-const NAME = "Karthik Cherupally";
+import portfolioData from "@/data.json";
 
 function AnimatedName() {
+  const name = portfolioData.personal.name;
   return (
     <h1
       className="font-display uppercase leading-[0.9] text-[11vw] sm:text-[9vw] lg:text-[7.5vw] text-center w-full mx-auto text-primary whitespace-nowrap"
@@ -15,7 +13,7 @@ function AnimatedName() {
           "0 0 8px rgba(0, 255, 120, 0.45), 0 0 18px rgba(0, 255, 120, 0.35), 0 0 35px rgba(0, 255, 120, 0.22)",
       }}
     >
-      {NAME.split("").map((char, index) => (
+      {name.split("").map((char, index) => (
         <span
           key={index}
           className="inline-block animated-name-char"
@@ -32,19 +30,20 @@ function AnimatedName() {
 }
 
 function TypingRoles() {
+  const roles = portfolioData.personal.roles;
   const [index, setIndex] = useState(0);
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const full = ROLES[index];
+    const full = roles[index] || "";
     if (!deleting && text === full) {
       const t = setTimeout(() => setDeleting(true), 1600);
       return () => clearTimeout(t);
     }
     if (deleting && text === "") {
       setDeleting(false);
-      setIndex((i) => (i + 1) % ROLES.length);
+      setIndex((i) => (i + 1) % roles.length);
       return;
     }
     const t = setTimeout(
@@ -56,7 +55,7 @@ function TypingRoles() {
       deleting ? 50 : 90,
     );
     return () => clearTimeout(t);
-  }, [text, deleting, index]);
+  }, [text, deleting, index, roles]);
 
   return (
     <span className="text-primary">
@@ -67,6 +66,7 @@ function TypingRoles() {
 }
 
 export function Hero() {
+  const { bio, email, cgpa, projectsCount } = portfolioData.personal;
   return (
     <section id="home" className="relative min-h-[530px] h-[100svh] flex flex-col justify-start container-x">
       <style>
@@ -119,14 +119,13 @@ export function Hero() {
           <div className="space-y-8 max-w-xl">
             <Reveal delay={500}>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I’m a Computer Science student specializing in Data Science, building practical solutions across
-                machine learning, full stack development, frontend development, and edge AI.
+                {bio}
               </p>
             </Reveal>
             <Reveal delay={650}>
               <div className="flex flex-wrap items-center gap-6">
                 <a
-                  href="mailto:karthikvnr27@gmail.com"
+                  href={`mailto:${email}`}
                   className="cta-ripple inline-flex items-center px-8 py-4 bg-primary text-primary-foreground font-display uppercase tracking-[0.15em] text-sm"
                 >
                   Let's Talk
@@ -142,8 +141,8 @@ export function Hero() {
           <Reveal delay={800} className="lg:justify-self-end">
             <div className="flex lg:flex-col gap-8 lg:gap-4 lg:items-end">
               {[
-                { v: "8.78", l: "CGPA" },
-                { v: "4+", l: "Projects" },
+                { v: cgpa, l: "CGPA" },
+                { v: projectsCount, l: "Projects" },
               ].map((s) => (
                 <div key={s.l} className="lg:text-right">
                   <div className="font-display text-4xl sm:text-5xl text-primary">{s.v}</div>

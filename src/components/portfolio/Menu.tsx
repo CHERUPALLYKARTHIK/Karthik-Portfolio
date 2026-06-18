@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import portfolioData from "@/data.json";
 
 const items = [
   { label: "Home", href: "#home", color: "#facc15" },
@@ -9,6 +10,8 @@ const items = [
 
 export function Menu() {
   const [open, setOpen] = useState(false);
+  const { email, socials } = portfolioData.personal;
+  
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
@@ -65,12 +68,16 @@ export function Menu() {
           </nav>
           <div className="space-y-6">
             <div className="flex gap-6 text-sm uppercase tracking-wider">
-              <a href="https://github.com/CHERUPALLYKARTHIK" target="_blank" rel="noreferrer" className="hover:text-primary">GitHub</a>
-              <a href="https://linkedin.com/in/karthik-cherupally" target="_blank" rel="noreferrer" className="hover:text-primary">LinkedIn</a>
+              {socials.github && (
+                <a href={socials.github} target="_blank" rel="noreferrer" className="hover:text-primary">GitHub</a>
+              )}
+              {socials.linkedin && (
+                <a href={socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-primary">LinkedIn</a>
+              )}
             </div>
             <div>
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Get in touch</div>
-              <a href="mailto:karthikvnr27@gmail.com" className="text-xl mt-1 inline-block hover:text-primary">karthikvnr27@gmail.com</a>
+              <a href={`mailto:${email}`} className="text-xl mt-1 inline-block hover:text-primary">{email}</a>
             </div>
           </div>
         </div>

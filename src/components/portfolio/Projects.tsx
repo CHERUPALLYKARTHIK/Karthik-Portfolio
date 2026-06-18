@@ -1,47 +1,11 @@
 import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
-
-const projects = [
-  {
-    n: "_01",
-    name: "Vortex-Dry Breath Acetone Analyzer",
-    badge: "In Dev",
-    badgeColor: "border-secondary text-secondary",
-    tags: ["ESP32/S3", "1D CNN", "TensorFlow", "Edge AI"],
-    preview: { gradient: "from-teal-900 to-slate-900", emoji: "🫁", label: "BREATH ANALYZER" },
-    href: "https://github.com/CHERUPALLYKARTHIK",
-  },
-  {
-    n: "_02",
-    name: "Health Link QR System",
-    badge: "Project",
-    badgeColor: "border-primary text-primary",
-    tags: ["React", "Firebase", "MongoDB", "JWT"],
-    preview: { gradient: "from-cyan-900 to-slate-900", emoji: "🏥", label: "HEALTH LINK" },
-    href: "https://github.com/CHERUPALLYKARTHIK",
-  },
-  {
-    n: "_03",
-    name: "Smart Kisan",
-    badge: "Project",
-    badgeColor: "border-primary text-primary",
-    tags: ["React (TS)", "Gemini API", "Vite", "Multilingual"],
-    preview: { gradient: "from-green-800 to-emerald-950", emoji: "🌾", label: "SMART KISAN" },
-    href: "https://github.com/CHERUPALLYKARTHIK",
-  },
-  {
-    n: "_04",
-    name: "PaathaDharma",
-    badge: "Building",
-    badgeColor: "border-yellow-400 text-yellow-400",
-    tags: ["React.js", "Node.js", "MongoDB", "TensorFlow", "Mapbox"],
-    preview: { gradient: "from-orange-800 to-amber-950", emoji: "📋", label: "PAATHADHARMA" },
-    href: "https://github.com/CHERUPALLYKARTHIK",
-  },
-];
+import portfolioData from "@/data.json";
 
 export function Projects() {
+  const projects = portfolioData.projects;
+  const email = portfolioData.personal.email;
   const [hover, setHover] = useState<number | null>(null);
 
   return (
@@ -79,7 +43,7 @@ export function Projects() {
         ))}
       </div>
 
-      {hover !== null && (
+      {hover !== null && projects[hover] && (
         <div className="hidden lg:block fixed top-24 right-10 z-40 w-[200px] aspect-[3/4] overflow-hidden pointer-events-none animate-in fade-in duration-300">
           <div className={`w-full h-full bg-gradient-to-br ${projects[hover].preview.gradient} flex flex-col items-center justify-center gap-3`}>
             <div className="text-6xl">{projects[hover].preview.emoji}</div>
@@ -90,7 +54,7 @@ export function Projects() {
 
       <div className="mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-border pt-10">
         <div className="font-display text-2xl sm:text-3xl uppercase">Have a project in mind?</div>
-        <a href="mailto:karthikvnr27@gmail.com" className="text-lg text-primary hover:underline">karthikvnr27@gmail.com</a>
+        <a href={`mailto:${email}`} className="text-lg text-primary hover:underline">{email}</a>
       </div>
     </section>
   );

@@ -1,19 +1,11 @@
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
-
-const achievements = [
-  { icon: "🏏", title: "District-Level Cricket Player", desc: "Recognized as Best Bowler in MPL under Telangana Cricket Academy" },
-  { icon: "🎓", title: "Reliance Foundation Scholarship", desc: "Selected for academic performance and learning potential" },
-  { icon: "🚀", title: "IIT Hyderabad — Decode Hackathon", desc: "Selected participant for the hackathon program" },
-];
-
-const certs = [
-  { name: "Tableau Certified Data Analyst Training", issuer: "Udemy", date: "May 2024" },
-  { name: "Python for Data Science Training", issuer: "Infosys Springboard", date: "Dec 2023" },
-  { name: "Oracle Cloud Infrastructure Data Science Professional", issuer: "Oracle", date: "Oct 2025" },
-];
+import portfolioData from "@/data.json";
 
 export function Achievements() {
+  const achievements = portfolioData.achievements;
+  const certs = portfolioData.certifications;
+
   return (
     <section className="container-x pb-section">
       <SectionTitle>Achievements & Certifications</SectionTitle>

@@ -1,20 +1,9 @@
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
-
-const cats = [
-  {
-    label: "Languages & Web",
-    items: ["🐍 Python", "☕ Java", "🗄️ SQL", "⚛️ React", "🌐 JavaScript", "📘 TypeScript", "🎨 HTML/CSS", "⚡ Vite"],
-  },
-  {
-    label: "AI & ML",
-    items: ["🧠 Scikit-Learn", "🔥 TensorFlow", "📊 Pandas", "🔢 NumPy", "📈 Matplotlib", "🌊 Seaborn", "👁️ OpenCV", "🌲 Random Forest"],
-  },
-  { label: "Database", items: ["🍃 MongoDB", "🐬 MySQL", "🔥 Firebase"] },
-  { label: "Tools & Concepts", items: ["🐙 Git / GitHub", "💻 VS Code", "📊 Tableau", "📉 Power BI", "🔧 ESP32/S3", "🧠 DSA / OOP"] },
-];
+import portfolioData from "@/data.json";
 
 export function Stack() {
+  const cats = portfolioData.stack;
   return (
     <section className="container-x pb-section">
       <SectionTitle>My Stack</SectionTitle>
