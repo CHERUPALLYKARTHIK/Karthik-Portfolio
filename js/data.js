@@ -175,7 +175,7 @@ window.PORTFOLIO_DATA = {
     {
       "icon": "🏆",
       "title": "Decode Hackathon Participant",
-      "desc": "Selected participant at Decode Hackathon, IIT Hyderabad - contributing to real-world technical problem solving and innovation."
+      "desc": "Selected participant at Decode Hackathon, IIIT Hyderabad - contributing to real-world technical problem solving and innovation."
     }
   ],
   "certifications": [
